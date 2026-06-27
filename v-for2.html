@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Vue.js のサンプル</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <style>
+    .green {
+      font-size: 32pt;
+      font-weight: plain;
+      color: green;
+    }
+    .blue {
+      font-size: 24pt;
+      font-weight: bold;
+      color: blue;
+    }
+  </style>
+  <h1 class="bg-primary text-white display-4 px-3">Vue3</h1>
+  <div id="app">
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>インデックス</th>
+          <th>名前</th>
+          <th>メール</th>
+          <th>電話番号</th>
+        </tr>
+      </thead>
+      <tbody>
+        <template v-for="(item, index) in items">
+          <tr v-if="index % 2 === 0" class="blue">
+            <td>{{ index }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.mail }}</td>
+            <td>{{ item.tel }}</td>
+          </tr>
+          <tr v-else class="green">
+            <td>{{ index }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.mail }}</td>
+            <td>{{ item.tel }}</td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+    <script>
+      const appdata = {
+        data() {
+          return {
+            items: [
+              { name: 'Yasushi', mail: 'osonoi@cu', tel: '1111' },
+              { name: 'Koh', mail: 'kojima@cu', tel: '2222' },
+              { name: 'Alice', mail: 'alice@example.com', tel: '3333' },
+              { name: 'Bob', mail: 'bob@example.com', tel: '4444' },
+              { name: 'Charlie', mail: 'charlie@example.com', tel: '5555' },
+              { name: 'David', mail: 'david@example.com', tel: '6666' },
+              { name: 'Eve', mail: 'eve@example.com', tel: '7777' },
+              { name: 'Frank', mail: 'frank@example.com', tel: '8888' },
+              { name: 'Grace', mail: 'grace@example.com', tel: '9999' },
+              { name: 'Henry', mail: 'henry@example.com', tel: '0000' }
+            ]
+          };
+        }
+      };
+      Vue.createApp(appdata).mount('#app');
+    </script>
+</body>
+
+</html>
