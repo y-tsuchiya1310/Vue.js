@@ -5,6 +5,7 @@
   <title>Vue.js のサンプル</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+　<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -49,6 +50,7 @@
       </tbody>
     </table>
     <script>
+/*
       const appdata = {
         data() {
           return {
@@ -67,6 +69,29 @@
           };
         }
       };
+      Vue.createApp(appdata).mount('#app');
+*/
+      const appdata = {
+        data() {
+          return {
+            items: []
+          }
+        },
+        mounted() {
+          // バックエンドのエンドポイントを適切なものに変更してください。
+          const backendEndpoint = 'http://localhost:30139/notes_from_b';
+
+          //AXIOSを使用してデータを取得
+          axios.get(backendEndpoint)
+            .then(response => {
+              this.items = response.data; //データを取得してitemsにセット
+              console.log(this.items);
+            })
+            .catch(error => {
+              console.error('データの取得に失敗しました', error);
+            });
+        }
+      }
       Vue.createApp(appdata).mount('#app');
     </script>
 </body>
